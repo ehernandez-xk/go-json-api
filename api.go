@@ -7,19 +7,23 @@ import (
 	"html"
 	"log"
 	"net/http"
+	// A powerful URL router and dispatcher for golang. http://www.gorillatoolkit.org/pkg/mux
+	"github.com/gorilla/mux"
 )
 
-//This is the handler
-func handler(w http.ResponseWriter, r *http.Request) {
+//Index is the handler of "/"
+func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
 }
 
 func main() {
-	//Everything that comes to the request is handled by handler func.
-	http.HandleFunc("/", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+
+	router := mux.NewRouter().StrictSlash(true)
+	//Using router instead of http.HandlFunc, This router only works to localhost:8080/
+	router.HandleFunc("/", Index)
+	log.Fatal(http.ListenAndServe(":8080", router))
 
 	// When runs: http://localhost:8080/test/test
-	// comes: Hello, "/test/test"
+	// comes: 404 page not found
 
 }
