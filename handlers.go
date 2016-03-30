@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	// A powerful URL router and dispatcher for golang. http://www.gorillatoolkit.org/pkg/mux
 	"github.com/gorilla/mux"
 )
@@ -35,8 +36,30 @@ func TodoIndex(w http.ResponseWriter, r *http.Request) {
 //TodoShow Show todos
 func TodoShow(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	todoID := vars["todoId"]
-	fmt.Fprintln(w, "Todo show: ", todoID)
+	var todoID int
+	var err error
+
+	if todoID, err = strconv.Atoi(vars["todoId"]); err != nil {
+		panic(err)
+	}
+
+	todo := RepoFindTodo(todoID)
+	if todo.Id > 0 {
+		w.Header().Set("Content-Type", "application/json; charset-UTF-8")
+		w.WriteHeader(http.StatusOK)
+
+		if err := json.NewEncoder(w).Encode(todo); err != nil {
+			panic(err)
+		}
+		return
+	}
+
+	//If we didn't find it, 404
+	w.Header().Set("Content-Type", "application/json; charset-UTF-8")
+	w.WriteHeader(http.StatusNotFound)
+	//Not found page.
+	http.NotFound(w, r)
+
 }
 
 //TodoCreate is the handler to create a todo

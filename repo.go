@@ -20,3 +20,13 @@ func RepoCreateTodo(t Todo) Todo {
 	todos = append(todos, t)
 	return t
 }
+
+//RepoFindTodo returns a todo if found its id.
+func RepoFindTodo(id int) Todo {
+	for _, todo := range todos {
+		if id == todo.Id {
+			return todo
+		}
+	}
+	return Todo{} //Empty todo if not found
+}

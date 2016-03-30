@@ -25,4 +25,6 @@ func main() {
 	// view all todos
 	// curl http://localhost:8080/todos
 
+	// find a todo http://localhost:8080/todos/3
+
 }
