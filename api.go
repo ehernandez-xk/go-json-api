@@ -3,6 +3,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html"
 	"log"
@@ -29,7 +30,14 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 //TodoIndex the index of Todo
 func TodoIndex(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Todo Index!")
+	todos := Todos{
+		Todo{Name: "Write presentation"},
+		Todo{Name: "Host meetup"},
+	}
+	//An Encoder writes JSON objects to an output stream.
+	//NewEncoder returns a new encoder that writes to w.
+	//Encode writes the JSON encoding of v to the stream, followed by a newline character.
+	json.NewEncoder(w).Encode(todos)
 }
 
 //TodoShow Show todos
@@ -54,7 +62,21 @@ func main() {
 	// When runs: http://localhost:8080/test/test
 	// comes: 404 page not found
 	// When runs:  http://localhost:8080/todos
-	// comes: Todo Index!
+	// comes:
+	/*
+		[
+			{
+				Name: "Write presentation",
+				Completed: false,
+				Due: "0001-01-01T00:00:00Z"
+			},
+			{
+				Name: "Host meetup",
+				Completed: false,
+				Due: "0001-01-01T00:00:00Z"
+			}
+		]
+	*/
 	// When runs:  http://localhost:8080/todos/myTodo
 	// comes: Todo show:  myTodo
 
