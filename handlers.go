@@ -40,7 +40,10 @@ func TodoShow(w http.ResponseWriter, r *http.Request) {
 	var err error
 
 	if todoID, err = strconv.Atoi(vars["todoId"]); err != nil {
-		panic(err)
+		if err := json.NewEncoder(w).Encode(jsonErr{Code: http.StatusNotFound, Text: "Not found"}); err != nil {
+			panic(err)
+		}
+		return
 	}
 
 	todo := RepoFindTodo(todoID)
