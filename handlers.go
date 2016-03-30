@@ -16,10 +16,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 //TodoIndex the index of Todo
 func TodoIndex(w http.ResponseWriter, r *http.Request) {
-	todos := Todos{
-		Todo{Name: "Write presentation"},
-		Todo{Name: "Host meetup"},
-	}
 
 	// we are sending back our content type and telling the client to expect json.
 	w.Header().Set("Content-Type", "application/json; charset-UTF-8")
