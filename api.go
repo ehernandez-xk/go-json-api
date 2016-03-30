@@ -7,9 +7,20 @@ import (
 	"html"
 	"log"
 	"net/http"
+	"time"
 	// A powerful URL router and dispatcher for golang. http://www.gorillatoolkit.org/pkg/mux
 	"github.com/gorilla/mux"
 )
+
+//Todo is the type of each todos.
+type Todo struct {
+	Name      string
+	Completed bool
+	Due       time.Time
+}
+
+//Todos is a slice of Todo.
+type Todos []Todo
 
 //Index is the handler of "/"
 func Index(w http.ResponseWriter, r *http.Request) {
