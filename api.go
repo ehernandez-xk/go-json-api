@@ -15,9 +15,9 @@ import (
 
 //Todo is the type of each todos.
 type Todo struct {
-	Name      string
-	Completed bool
-	Due       time.Time
+	Name      string    `json:"name"`
+	Completed bool      `json:"completed"`
+	Due       time.Time `json:"due"`
 }
 
 //Todos is a slice of Todo.
@@ -66,14 +66,14 @@ func main() {
 	/*
 		[
 			{
-				Name: "Write presentation",
-				Completed: false,
-				Due: "0001-01-01T00:00:00Z"
+				name: "Write presentation",
+				completed: false,
+				due: "0001-01-01T00:00:00Z"
 			},
 			{
-				Name: "Host meetup",
-				Completed: false,
-				Due: "0001-01-01T00:00:00Z"
+				name: "Host meetup",
+				completed: false,
+				due: "0001-01-01T00:00:00Z"
 			}
 		]
 	*/
