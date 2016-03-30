@@ -19,10 +19,10 @@ func main() {
 
 	//Using curl instead the browser, in other terminal
 
+	// curl -H "Content-Type: application/json" -d '{"name":"New Todo"}' http://localhost:8080/todos
+	// shows: {"id":5,"name":"New Todo","completed":false,"due":"0001-01-01T00:00:00Z"}
+
+	// view all todos
 	// curl http://localhost:8080/todos
-	// shows:
-	// [{"name":"Write presentation","completed":false,"due":"0001-01-01T00:00:00Z"},{"name":"Host meetup","completed":false,"due":"0001-01-01T00:00:00Z"}]
-	// prints log:
-	// 2016/03/30 10:00:34 GET	/todos	TodoIndex	57.063µs
 
 }
