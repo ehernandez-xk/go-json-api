@@ -20,6 +20,12 @@ func TodoIndex(w http.ResponseWriter, r *http.Request) {
 		Todo{Name: "Write presentation"},
 		Todo{Name: "Host meetup"},
 	}
+
+	// we are sending back our content type and telling the client to expect json.
+	w.Header().Set("Content-Type", "application/json; charset-UTF-8")
+	// we are explicitly setting the status code.
+	w.WriteHeader(http.StatusOK)
+
 	//An Encoder writes JSON objects to an output stream.
 	//NewEncoder returns a new encoder that writes to w.
 	//Encode writes the JSON encoding of v to the stream, followed by a newline character.
