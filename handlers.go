@@ -47,7 +47,7 @@ func TodoShow(w http.ResponseWriter, r *http.Request) {
 	}
 
 	todo := RepoFindTodo(todoID)
-	if todo.Id > 0 {
+	if todo.ID > 0 {
 		w.Header().Set("Content-Type", "application/json; charset-UTF-8")
 		w.WriteHeader(http.StatusOK)
 
