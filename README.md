@@ -18,9 +18,18 @@ Console ouput
 ###Find a todo
 ``http://localhost:8080/todos/3``
 
-If todo is not found
 
+```json
+{
+id: 3,
+name: "Visit friends",
+completed: false,
+due: "0001-01-01T00:00:00Z"
+}
 ```
+
+If todo is not found
+```json
 {
 code: 404,
 text: "Not found"
