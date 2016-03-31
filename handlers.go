@@ -92,6 +92,17 @@ func TodoCreate(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// Validate the todo input client
+	if err := todo.OK(); err != nil {
+		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+		w.WriteHeader(422) // unprocessable entity
+
+		if err := json.NewEncoder(w).Encode(jsonErr{Code: 422, Text: err.Error()}); err != nil {
+			panic(err)
+		}
+		return
+	}
+
 	//t is the todo created.
 	t := RepoCreateTodo(todo)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
