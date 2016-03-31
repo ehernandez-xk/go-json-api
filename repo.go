@@ -15,8 +15,7 @@ func init() {
 
 //RepoCreateTodo receives a todo and appends it to todos
 func RepoCreateTodo(t Todo) Todo {
-	currentID++
-	t.ID = currentID
+	t.ID = getLastTodoID()
 	todos = append(todos, t)
 	return t
 }
@@ -29,4 +28,16 @@ func RepoFindTodo(id int) Todo {
 		}
 	}
 	return Todo{} //Empty todo if not found
+}
+
+//getLastTodoID helps to get the bigger id +1 of todos
+func getLastTodoID() int {
+	id := 1
+	for _, todo := range todos {
+		if todo.ID > id {
+			id = todo.ID
+		}
+		id++
+	}
+	return id
 }
