@@ -19,7 +19,7 @@ Console ouput
 ``http://localhost:8080/todos/3``
 
 
-```json
+```javascript
 {
 id: 3,
 name: "Visit friends",
@@ -29,7 +29,7 @@ due: "0001-01-01T00:00:00Z"
 ```
 
 If todo is not found
-```json
+```javascript
 {
 code: 404,
 text: "Not found"
