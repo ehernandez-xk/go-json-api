@@ -20,8 +20,6 @@ func Index(w http.ResponseWriter, r *http.Request) {
 //TodoIndex the index of Todo
 func TodoIndex(w http.ResponseWriter, r *http.Request) {
 
-	// we are sending back our content type and telling the client to expect json.
-	w.Header().Set("Content-Type", "application/json; charset-UTF-8")
 	// we are explicitly setting the status code.
 	w.WriteHeader(http.StatusOK)
 
@@ -48,7 +46,6 @@ func TodoShow(w http.ResponseWriter, r *http.Request) {
 
 	todo := RepoFindTodo(todoID)
 	if todo.ID > 0 {
-		w.Header().Set("Content-Type", "application/json; charset-UTF-8")
 		w.WriteHeader(http.StatusOK)
 
 		if err := json.NewEncoder(w).Encode(todo); err != nil {
@@ -58,7 +55,6 @@ func TodoShow(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//If we didn't find it, 404
-	w.Header().Set("Content-Type", "application/json; charset-UTF-8")
 	w.WriteHeader(http.StatusNotFound)
 
 	if err := json.NewEncoder(w).Encode(jsonErr{Code: http.StatusNotFound, Text: "Not found"}); err != nil {
@@ -85,7 +81,6 @@ func TodoCreate(w http.ResponseWriter, r *http.Request) {
 	}
 	// Unmarshal it to our Todo struct
 	if err := json.Unmarshal(body, &todo); err != nil {
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 		w.WriteHeader(422) // unprocessable entity
 		if err := json.NewEncoder(w).Encode(err); err != nil {
 			panic(err)
@@ -94,7 +89,6 @@ func TodoCreate(w http.ResponseWriter, r *http.Request) {
 
 	// Validate the todo input client
 	if err := todo.OK(); err != nil {
-		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 		w.WriteHeader(422) // unprocessable entity
 
 		if err := json.NewEncoder(w).Encode(jsonErr{Code: 422, Text: err.Error()}); err != nil {
@@ -105,8 +99,6 @@ func TodoCreate(w http.ResponseWriter, r *http.Request) {
 
 	//t is the todo created.
 	t := RepoCreateTodo(todo)
-	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
-
 	//201 Created
 	w.WriteHeader(http.StatusCreated)
 	// Encode t to json

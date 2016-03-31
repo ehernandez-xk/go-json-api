@@ -6,6 +6,15 @@ import (
 	"time"
 )
 
+//commonHeaders using the wrapper technique adds common headers to the handlers
+//https://medium.com/@matryer/the-http-handlerfunc-wrapper-technique-in-golang-c60bf76e6124
+func commonHeaders(fn http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json; charset-UTF-8")
+		fn(w, r)
+	}
+}
+
 //Logger returns a handler that prints to the log.
 func Logger(inner http.Handler, name string) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
