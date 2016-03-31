@@ -11,7 +11,7 @@ func Logger(inner http.Handler, name string) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
 
-		//Server the handler
+		//Before the handler
 		inner.ServeHTTP(w, r)
 
 		//After the handler is finished print the log
@@ -19,3 +19,9 @@ func Logger(inner http.Handler, name string) http.Handler {
 
 	})
 }
+
+/*
+functions that take a http.HandlerFunc and return a new one can do things
+before and/or after the handler is called, and even decide whether to call
+the original handler at all.
+*/
