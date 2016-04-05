@@ -1,5 +1,9 @@
 # go-json-api
 
+drone.io Status
+
+[![Build Status](https://drone.io/github.com/ehernandez-xk/go-json-api/status.png)](https://drone.io/github.com/ehernandez-xk/go-json-api/latest)
+
 ###To run the program
 
 ``go run *.go``
