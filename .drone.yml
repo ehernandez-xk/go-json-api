@@ -1,4 +1,7 @@
-image: golang
+image: quay.io/xumak/oracle-7-jdk
+auth_condif:
+  username: ehernandez
+  password: $$QUAY_PASS
 clone:
   depth: 10
   recursive: true
