@@ -1,5 +1,6 @@
-image: golang
-script:
+build:
+  image: golang
+  commands:
   - go get
   - go build
   - go test
