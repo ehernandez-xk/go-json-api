@@ -1,4 +1,7 @@
 image: golang
+clone:
+  depth: 10
+  recursive: true
 script:
   - go get
   - go build
