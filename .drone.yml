@@ -1,7 +1,4 @@
-image: quay.io/xumak/oracle-7-jdk
-auth_condif:
-  username: ehernandez
-  password: $$QUAY_PASS
+image: golang
 script:
   - go get
   - go build
