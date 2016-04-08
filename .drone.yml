@@ -5,5 +5,7 @@ build:
   - go build
   - go test
 publish:
-  artifacts:
-    - go-json-api
+  github_release:
+    api_key: 6e14f11750586dfcb95376ba35cb840bfa22e799
+    files: go-json-api
+    checksum: sha1
