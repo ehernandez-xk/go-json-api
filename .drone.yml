@@ -4,4 +4,6 @@ build:
   - go get
   - go build
   - go test
-publish: go-json-api
+publish:
+  artifacts:
+    - go-json-api
