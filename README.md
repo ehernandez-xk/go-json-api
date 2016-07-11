@@ -8,6 +8,14 @@ drone.io Status
 
 ``go run *.go``
 
+or to generate the binary (in the go-json-api directory)
+
+``go build``
+
+run
+
+``go-json-api``
+
 ###View all todos
 
 ``http://localhost:8080/todos``
